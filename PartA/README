@@ -1,0 +1,96 @@
+# Q1 batch file
+
+#!/bin/bash
+#SBATCH --gres=gpu:rtx8000:1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=q1
+#SBATCH --output=%x.out
+
+cd /scratch/dy2242/hw5/cuda-assignment
+make clean
+make vecaddKernel00.o
+make vecadd00
+./vecadd00 500
+./vecadd00 1000
+./vecadd00 2000
+make tar TAR_FILE_NAME=Q1.tar
+make clean
+
+
+
+
+
+
+
+# Q2 batch file
+
+#!/bin/bash
+#SBATCH --gres=gpu:rtx8000:1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=q3
+#SBATCH --output=%x.out
+
+cd /scratch/dy2242/hw5/cuda-assignment
+make clean
+make matmultKernel00.o
+make matmult00
+./matmult00 16
+./matmult00 32
+./matmult00 64
+make tar TAR_FILE_NAME=Q3.tar
+make clean
+
+
+
+
+
+
+# Q3 batch file
+
+#!/bin/bash
+#SBATCH --gres=gpu:rtx8000:1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=q3
+#SBATCH --output=%x.out
+
+cd /scratch/dy2242/hw5/cuda-assignment
+make clean
+make matmultKernel00.o
+make matmult00
+./matmult00 16
+./matmult00 32
+./matmult00 64
+make tar TAR_FILE_NAME=Q3.tar
+make clean
+
+
+
+
+
+
+# Q4 batch file
+
+#!/bin/bash
+#SBATCH --gres=gpu:rtx8000:1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=q4
+#SBATCH --output=%x.out
+
+cd /scratch/dy2242/hw5/cuda-assignment
+make clean
+make matmultKernel01.o
+make matmult01
+./matmult01 8
+./matmult01 16
+./matmult01 32
+make tar TAR_FILE_NAME=Q4.tar
+make clean
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --gres=gpu:rtx8000:1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=part_c
+#SBATCH --output=%x.out
+
+cd /scratch/dy2242/hw5/part-c
+module purge
+module load cudnn/8.6.0.163-cuda11
+module load cuda/11.6.2
+make main
+make tar TAR_FILE_NAME=partC.tar
+make clean
+./main

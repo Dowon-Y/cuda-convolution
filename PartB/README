@@ -1,0 +1,103 @@
+# Q1 batch file
+
+#!/bin/bash
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=part_b_q1
+#SBATCH --output=%x.out
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dy2242@nyu.edu
+
+cd /scratch/dy2242/hw5/part-b
+make clean
+make q1
+./q1 1
+./q1 5
+./q1 10
+./q1 50
+./q1 100
+make tar TAR_FILE_NAME=Q1.tar
+make clean
+
+
+
+
+
+
+
+# Q2 batch file
+
+#!/bin/bash
+#SBATCH --gres=gpu:rtx8000:1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=part_b_q2
+#SBATCH --output=%x.out
+
+module purge
+cd /scratch/dy2242/hw5/part-b
+export PATH=/usr/local/cuda/bin:$PATH
+make clean
+make q2
+nvprof ./q2 1 1 1
+nvprof ./q2 5 1 1
+nvprof ./q2 10 1 1
+nvprof ./q2 50 1 1
+nvprof ./q2 100 1 1
+
+nvprof ./q2 1 1 256
+nvprof ./q2 5 1 256
+nvprof ./q2 10 1 256
+nvprof ./q2 50 1 256
+nvprof ./q2 100 1 256
+
+nvprof ./q2 1 16 256
+nvprof ./q2 5 16 256
+nvprof ./q2 10 16 256
+nvprof ./q2 50 16 256
+nvprof ./q2 100 16 256
+make tar TAR_FILE_NAME=Q2.tar
+make clean
+
+
+
+
+
+
+
+# Q3 batch file
+
+#!/bin/bash
+#SBATCH --gres=gpu:rtx8000:1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=24:00:00
+#SBATCH --mem=20GB
+#SBATCH --job-name=part_b_q3
+#SBATCH --output=%x.out
+
+module purge
+cd /scratch/dy2242/hw5/part-b
+export PATH=/usr/local/cuda/bin:$PATH
+make clean
+make q3
+nvprof ./q3 1 1 1
+nvprof ./q3 5 1 1
+nvprof ./q3 10 1 1
+nvprof ./q3 50 1 1
+nvprof ./q3 100 1 1
+
+nvprof ./q3 1 1 256
+nvprof ./q3 5 1 256
+nvprof ./q3 10 1 256
+nvprof ./q3 50 1 256
+nvprof ./q3 100 1 256
+
+nvprof ./q3 1 16 256
+nvprof ./q3 5 16 256
+nvprof ./q3 10 16 256
+nvprof ./q3 50 16 256
+nvprof ./q3 100 16 256
+make tar TAR_FILE_NAME=Q3.tar
+make clean
